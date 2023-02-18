@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const roomSchema = mongoose.Schema({
-    roomNumber: Number,
-    rollNumber: Number,
+    roomNumber: { type: Number, required: true },
+    rollNumber: { type: Number }
 });
 
 const Room = mongoose.model("Room", roomSchema);

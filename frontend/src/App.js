@@ -1,33 +1,25 @@
 import "./App.css";
-import axios from "axios";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Signup from "./pages/Signup"
+import Signin from "./pages/Signin"
+import Rooms from "./pages/Rooms"
+import Signout from "./pages/Signout"
+import Home from "./pages/Home";
 
 function App() {
-  const handleClick = (event) => {
-    const roomNumber = event.target.innerText;
-    axios.post("http://localhost:5000/user", {
-      roomNumber: roomNumber,
-      rollNumber: 196126
-    })
-      .then((res) => {
-        console.log(res)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-  };
-
-  const arr = Array.from({ length: 100 }, (_, index) => index + 1 + 1000);
-
-  const listItems = arr.map((number) => (
-    <button onClick={handleClick}>{number}</button>
-  ));
-
   return (
     <div className="App">
-      <h1 className="header"> ROOMS </h1>
-      {listItems}
+      <Router>
+        <Routes>
+          <Route element={<Home />} path="/" />
+          <Route element={<Signup />} path="/signup" />
+          <Route element={<Signin />} path="/signin" />
+          <Route element={<Rooms />} path="/rooms" />
+          <Route element={<Signout />} path="/signout" />
+        </Routes>
+      </Router>
     </div>
-  );
+  )
 }
 
 export default App;

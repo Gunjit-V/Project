@@ -2,9 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const userRoute = require("./routes/userRoute")
+const router = require("./routes/router")
 
 const app = express();
+//Middleware
+
+app.use(cors());
+app.use(bodyParser.json());
+
 
 //Connect to MongoDB database
 mongoose
@@ -16,14 +21,10 @@ mongoose
         console.error(err);
     });
 
-//Middleware
-
-app.use(cors());
-app.use(bodyParser.json());
 
 //Routes
 
-app.post("/user", userRoute);
+app.use("/api", router)
 
 //Start Server
 
